@@ -64,14 +64,23 @@ function setup_attendees()
 			this.value = terms.join(", ");
 			*/
 			
+			this.value = "";
+			
 			$("<p />", {
-				html: ui.item.value
+				html: ui.item.value + "<a href='#' class='delete'>x</a>"
 			}).appendTo("#attendees");
 			
 			return false;
 		}
 	});
 	
+	
+	$("#attendees").delegate("a.delete", "click", function() {
+		$(this).parents("p").fadeOut(200, function() {
+			$(this).remove();
+		});
+		return false;
+	});
 }
 
 function change_page(page_id)
