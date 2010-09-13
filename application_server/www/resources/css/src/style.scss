@@ -10,7 +10,66 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
     a:active {position: relative; top: 1px;}
 	a:hover {color: $color_light_orange;}
 	ul {list-style: none;}
-	hr {clear: both;}
+	hr {clear: both}
 	hr.thick {border-width: 6px; border-color: #000;}
-#main {position: relative; margin: 0 auto; width: $wrap_width; padding-bottom: 20px; opacity: 1; min-height: 800px;}
+	h1 {font-size: 40px; width: 400px; float: left;}
+	h2 {font-size: 32px; width: 800px; float: left;}
+#container {position: relative; margin: 0 auto; width: $wrap_width; padding: 10px 0 20px 0; opacity: 1; min-height: 800px;}
+	#header {width: 100%;}
+
+	#nav {float: right; position: relative; top: 13px;
+		li {float: left; margin-left: 10px; font-size: 16px;}
+	}
+	
+	// new game
+	#new-game {
+		.game-table {
+			.body li {width: 920px; color: $color_dark_gray;}
+			.body input[type=radio] {margin-right: 5px;
+					+ label {position: relative; top: 2px; margin-right: 10px;}
+				}
+			.body .input-date {float: left; width: 250px;}
+			.body .input-time {float: left;}
+		}
+	}
+	
+	
+	// profile
+	#profile {
+		& .profile-detail {float: left; clear: left; margin-bottom: 30px;
+			& .avatar {width: 150px; height: 113px; border: 5px solid $color_light_white; @include boxshadow(#000, 0, 0, 3px); @include corner(); float: left;}
+			& .content {float: left; width: 790px; margin-left: 20px;
+				& .gamertags {margin-top: 10px; float: left;
+					& li {float: left; width: 200px;
+						& p:first-child {font-weight: bold; font-size: 16px; color: $color_light_orange;}
+					}
+				}
+			}
+		}
+			
+		
+	}	
+
+
+	.filters {float: right; position: relative; top: 10px;}
+	// game table
+	.game-table {background: $color_light_white;
+		& li {background: rgba(0, 0, 0, 0.3); float: left; padding: 10px; @include corner(); margin: 5px 0;}
+		& .header {background: $color_light_blue; color: $color_light_white; float: left; width: 940px; height: 30px; @include corner(); padding: 0 10px; line-height: 30px; margin-bottom: 5px; @include boxshadow(#000, 0, 0, 3px);}
+			& .header p {float: left; font-size: 16px; font-weight: bold; margin-right: 10px;
+					&.console {width: 100px;}
+					&.game {font-style: italic;}
+					&.time {float: right;}
+				}
+		& .body {width: 940px; background: $color_light_white; float: left; padding: 10px; @include corner();}
+		 	& .body ul {width: 940px;}
+				& .body li {float: left; background: rgba(255, 255, 255, 0.5); @include corner(); margin: 5px; padding: 4px;
+						&.open a {opacity: 1; text-transform: uppercase;}
+					}
+					& .body li a {@include corner(); width: 130px; height: 26px; background: $color_light_gray; display: block; line-height: 27px; text-indent: 10px; opacity: 0.5;
+						&:hover {background: $color_light_orange; color: #fff;}
+					}
+		
+	}
+	
 // END BASE
