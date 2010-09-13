@@ -16,7 +16,6 @@ function initialize(req, res, next)
 	var minute = 60000;
 	var hour   = 3600000;
 	
-	
 	var fifteenMinutesFromNow    = now.getTime() + (15 * minute);
 	var thirtyMinutesFromNow     = now.getTime() + (30 * minute);
 	var fourtyFiveMinutesFromNow = now.getTime() + (30 * minute);

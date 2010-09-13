@@ -2,6 +2,9 @@ var couchdb = require('../libs/node-couchdb/lib/couchdb'),
     client  = couchdb.createClient(5984, 'localhost'),
     db      = client.db('gunslinger');
 
+var utils = require('connect/utils'),
+    formidable = require('formidable');
+
 exports.endpoints = function(app)
 {
 	app.get('/', getMatches);
@@ -11,13 +14,27 @@ exports.endpoints = function(app)
 
 function createMatch(req, res, next)
 {
-	next({"message":"creating new match"});
+	if(req.form)
+	{
+		console.log(req.form);
+		req.form.onEnd = function(err, fields, files){
+			console.log("FORM COMPLETE");
+			
+		}
+		
+		next({"message":"FORM SUBMITTED"});
+	}
+	else
+	{
+		next({"message":"creating new match"});
+	}
+	
 }
 
 
 function getMatches(req, res, next)
 {
-	db.view("gunslinger", "games-recent", {"include_docs":true}, function(error, data)
+	db.view("gunslinger", "matches-recent", {"include_docs":true}, function(error, data)
 	{
 		if(error == null)
 		{
@@ -27,7 +44,7 @@ function getMatches(req, res, next)
 				results.push(row.doc);
 			});
 			
-			next({"ok":true, "games":results});
+			next({"ok":true, "matches":results});
 		}
 		else
 		{
