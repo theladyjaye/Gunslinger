@@ -11,10 +11,14 @@ var server = connect.createServer(
 	connect.logger({ buffer: true })
 );
 
-//server.use("/player/", connect.router(player.endpoints));
-//server.use("/session/", connect.router(session.endpoints));
+var vhost = connect.vhost('gunslinger', server);
+
+server.use("/www", connect.staticProvider(__dirname + '/www'));
 server.use(main.defaultResponse);
 server.use(main.renderResponse);
+//server.use("/player/", connect.router(player.endpoints));
+//server.use("/session/", connect.router(session.endpoints));
+
 server.listen(80);
 
 console.log('Gunslinger server listening on port 80');
