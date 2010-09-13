@@ -3,13 +3,93 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Gunslinger</title>
-	<link rel="stylesheet" href="resources/css/style.css" />
+	<link rel="stylesheet" href="/www/resources/css/style.css" />
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="/www/resources/js/gunslinger.main.js"></script>
 </head>
 <body>
 	<div id="container">
 		<div id="wrap">
-			<h1>heading</h1>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse <a href="#">cillum</a> dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			<div id="header">
+				<h1>Gunslinger</h1>
+				<hr />
+			</div>
+			
+			
+			<div id="lobby">
+				<h2>Lobby</h2>
+				<div class="filters">
+					<select id="dd-console" name="console">
+						<option value="console">All</option>
+						<option value="console-wii">Wii</option>
+						<option value="console-xbox-360">XBOX 360</option>
+						<option value="console-ps3">PS3</option>
+					</select>
+				</div>
+				<ul class="game-table">
+					<li>
+						<div class="header">
+							<p class="console console-wii">Wii</p>
+							<p class="game">Mario Kart</p>
+							<p class="time">6:45pm</p>
+						</div>
+						<div class="body">
+							<ul>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li class="open"><a href="#">open</a></li>
+								<li class="open"><a href="#">open</a></li>
+								<li class="open"><a href="#">open</a></li>
+								<li class="open"><a href="#">open</a></li>
+								<li class="open"><a href="#">open</a></li>
+								<li class="open"><a href="#">open</a></li>
+								<li class="open"><a href="#">open</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<div class="header">
+							<p class="console console-xbox-360">XBOX 360</p>
+							<p class="game">Halo</p>
+							<p class="time">7:15pm</p>
+						</div>
+						<div class="body">
+							<ul>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li class="open"><a href="#">open</a></li>
+								<li class="open"><a href="#">open</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<div class="header">
+							<p class="console console-ps3">PS3</p>
+							<p class="game">Grand Theft Auto</p>
+							<p class="time">11:15pm</p>
+						</div>
+						<div class="body">
+							<ul>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li><a href="#">username</a></li>
+								<li class="open"><a href="#">open</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </body>
