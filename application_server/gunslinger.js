@@ -3,8 +3,8 @@ require.paths.unshift("/usr/local/lib/node");
 var connect   = require('connect');
 var form      = require('connect-form');
 var main      = require('./endpoints/main');
-//var player    = require('./endpoints/player');
-//var session   = require('./endpoints/session');
+var games     = require('./endpoints/games');
+
 
 var server = connect.createServer(
 	form({ keepExtensions: false }),
@@ -14,9 +14,13 @@ var server = connect.createServer(
 var vhost = connect.vhost('gunslinger', server);
 
 server.use("/www", connect.staticProvider(__dirname + '/www'));
+server.use("/www/resources/css", connect.staticProvider(__dirname + '/www/resources/css'));
+server.use("/www/resources/img", connect.staticProvider(__dirname + '/www/resources/img'));
+server.use("/www/resources/js", connect.staticProvider(__dirname + '/www/resources/js'));
+
 server.use(main.defaultResponse);
 server.use(main.renderResponse);
-//server.use("/player/", connect.router(player.endpoints));
+server.use("/games/", connect.router(games.endpoints));
 //server.use("/session/", connect.router(session.endpoints));
 
 server.listen(80);
