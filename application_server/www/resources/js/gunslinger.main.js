@@ -1,5 +1,19 @@
 $(function() {
 	
+	
+	// new game form
+	$("#frm-new-game").submit(function() {
+		
+		console.log($(this).serialize());
+//		$.post("", $(this).serialize(), function(response) {
+			
+//		});
+		
+		return false;
+	});
+	
+	
+	// console filter in lobby
 	$("#dd-console").change(function() {
 		var val = $(this).val();
 		
@@ -7,12 +21,67 @@ $(function() {
 		$("#lobby .game-table .console." + val).parents("li").show();
 	});
 	
+	
+	// date picker 
 	$("#datepicker").datepicker();
+
+
+	setup_attendees();
 	
 	// run sammy
 	app.run("#/lobby");
 	
 });
+
+function setup_attendees()
+{
+	var availableTags = ["Cool Kid", "Nightowl", "Blockbuster Manager", "Brother", "Sister", "Uncle"];
+	function split(val) {
+		return val.split(/,\s*/);
+	}
+	function extractLast(term) {
+		return split(term).pop();
+	}
+
+	$("#dd-attendees").autocomplete({
+		minLength: 0,
+		source: function(request, response) {
+			// delegate back to autocomplete, but extract the last term
+			response($.ui.autocomplete.filter(availableTags, extractLast(request.term)));
+		},
+		focus: function() {
+			// prevent value inserted on focus
+			return false;
+		},
+		select: function(event, ui) {
+			/*var terms = split( this.value );
+			// remove the current input
+			terms.pop();
+			// add the selected item
+			terms.push( ui.item.value );
+			// add placeholder to get the comma-and-space at the end
+			terms.push("");
+			this.value = terms.join(", ");
+			*/
+			
+			this.value = "";
+			
+			$("<p />", {
+				html: ui.item.value + "<a href='#' class='delete'>x</a>"
+			}).appendTo("#attendees");
+			
+			return false;
+		}
+	});
+	
+	
+	$("#attendees").delegate("a.delete", "click", function() {
+		$(this).parents("p").fadeOut(200, function() {
+			$(this).remove();
+		});
+		return false;
+	});
+}
 
 function change_page(page_id)
 {
