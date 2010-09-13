@@ -1,6 +1,6 @@
 exports.defaultResponse = function(req, res, next)
 {
-	next({"message":"Welcome to Gunslinger", "version":"0.1"});
+	next({"ok":true, "message":"Welcome to Gunslinger", "version":"0.1"});
 }
 
 exports.renderResponse = function(err, req, res, next)
