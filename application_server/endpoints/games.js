@@ -4,10 +4,18 @@ var couchdb = require('../libs/node-couchdb/lib/couchdb'),
 
 exports.endpoints = function(app)
 {
-	app.get('/', getGames);
+	app.get('/', getMatches);
+	app.post('/create', createMatch);
 }
 
-function getGames(req, res, next)
+
+function createMatch(req, res, next)
+{
+	next({"message":"creating new match"});
+}
+
+
+function getMatches(req, res, next)
 {
 	db.view("gunslinger", "games-recent", {"include_docs":true}, function(error, data)
 	{

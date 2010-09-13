@@ -1,5 +1,5 @@
 function(doc)
 {
-	if(doc.type == "game")
+	if(doc.type == "match")
 		emit(doc.scheduled_time, null);
 }

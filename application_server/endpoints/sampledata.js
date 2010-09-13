@@ -1,4 +1,6 @@
-var games   = require('../data/games');
+var match   = require('../data/match');
+var game    = require('../data/game');
+
 var couchdb = require('../libs/node-couchdb/lib/couchdb'),
     client  = couchdb.createClient(5984, 'localhost'),
     db      = client.db('gunslinger');
@@ -24,46 +26,83 @@ function initialize(req, res, next)
 	db.remove();
 	db.create();
 	
-	var g1            = new games.Game();
-	g1.created_by     = "ajackson";
-	g1.label          = "Lorem ipsum dolor sit amet";
-	g1.title          = "Halo: Reach";
+	var g1            = new game.Game();
+	g1.label          = "Halo:Reach";
+	g1._id            = "halo-reach";
 	g1.platform       = "xbox360";
-	g1.scheduled_time = new Date(fifteenMinutesFromNow); 
-	
-	var g2            = new games.Game();
-	g2.created_by     = "jmadison";
-	g2.label          = "Lorem ipsum dolor sit amet";
-	g2.title          = "Red Dead Redemption";
+	                  
+	var g2            = new game.Game();
+	g2.label          = "Red Dead Redemption";
+	g2._id            = "red-dead-redemption";
 	g2.platform       = "ps3";
-	g2.scheduled_time = new Date(thirtyMinutesFromNow);
-	
-	var g3            = new games.Game();
-	g3.created_by     = "tjefferson";
-	g3.label          = "Lorem ipsum dolor sit amet";
-	g3.title          = "Borderlands";
+	                  
+	var g3            = new game.Game();
+	g3.label          = "Borderlands";
+	g3._id             = "borderlands";
 	g3.platform       = "xbox360";
-	g3.scheduled_time = new Date(fourtyFiveMinutesFromNow);
-	
-	var g4            = new games.Game();
-	g4.created_by     = "alincoln";
-	g4.label          = "Lorem ipsum dolor sit amet";
-	g4.title          = "Starcraft 2";
+	                  
+	var g4            = new game.Game();
+	g4.label          = "Starcraft 2";
+	g4._id             = "starcraft2";
 	g4.platform       = "pc";
-	g4.scheduled_time = new Date(twoHoursFromNow);
-	
-	var g5            = new games.Game();
-	g5.created_by     = "alincoln";
-	g5.label          = "Lorem ipsum dolor sit amet";
-	g5.title          = "Gears of War 2";
+
+	var g5            = new game.Game();
+	g5.label          = "Gears of War 2";
+	g5._id             = "gears-of-war-2";
 	g5.platform       = "xbox360";
-	g5.scheduled_time = new Date(sixHoursFromNow);
+	
+	
+	var m1            = new match.Match();
+	m1.created_by     = "ajackson";
+	m1.label          = "Lorem ipsum dolor sit amet";
+	m1.title          = g1.label;
+	m1.platform       = g1.platform;
+	m1.scheduled_time = new Date(fifteenMinutesFromNow); 
+	m1.players.push(m1.created_by);
+	
+	var m2            = new match.Match();
+	m2.created_by     = "jmadison";
+	m2.label          = "Lorem ipsum dolor sit amet";
+	m2.title          = g2.label;
+	m2.platform       = g2.platform;
+	m2.scheduled_time = new Date(thirtyMinutesFromNow);
+	m2.players.push(m2.created_by);
+	
+	var m3            = new match.Match();
+	m3.created_by     = "tjefferson";
+	m3.label          = "Lorem ipsum dolor sit amet";
+	m3.title          = g3.label;
+	m3.platform       = g3.platform;
+	m3.scheduled_time = new Date(fourtyFiveMinutesFromNow);
+	m3.players.push(m3.created_by);
+	
+	var m4            = new match.Match();
+	m4.created_by     = "alincoln";
+	m4.label          = "Lorem ipsum dolor sit amet";
+	m4.title          = g4.label;
+	m4.platform       = g4.platform;
+	m4.scheduled_time = new Date(twoHoursFromNow);
+	m4.players.push(m4.created_by);
+	
+	var m5            = new match.Match();
+	m5.created_by     = "alincoln";
+	m5.label          = "Lorem ipsum dolor sit amet";
+	m5.title          = g5.label;
+	m5.platform       = g5.platform;
+	m5.scheduled_time = new Date(sixHoursFromNow);
+	m5.players.push(m5.created_by);
 	
 	db.saveDoc(g1);
 	db.saveDoc(g2);
 	db.saveDoc(g3);
 	db.saveDoc(g4);
 	db.saveDoc(g5);
+	
+	db.saveDoc(m1);
+	db.saveDoc(m2);
+	db.saveDoc(m3);
+	db.saveDoc(m4);
+	db.saveDoc(m5);
 	
 	next({"ok":true, "message":"done"});
 }

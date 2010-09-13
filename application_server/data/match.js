@@ -1,4 +1,4 @@
-exports.Game = function()
+exports.Match = function()
 {
 	this.created_on     = new Date();
 	this.created_by     = null;
@@ -6,5 +6,6 @@ exports.Game = function()
 	this.title          = null;
 	this.scheduled_time = null;
 	this.platform       = null;
-	this.type           = "game";
+	this.players        = [];
+	this.type           = "match";
 }
