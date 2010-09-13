@@ -1,0 +1,16 @@
+@import "reset";
+@import "config";
+@import "helper";
+
+
+// BASE
+html {overflow-y: scroll;}
+body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: $color_light_white; background: $color_light_gray;}
+    a {text-decoration: none; @include transition(all, 0.15s, ease-out); color: $color_dark_orange;}
+    a:active {position: relative; top: 1px;}
+	a:hover {color: $color_light_orange;}
+	ul {list-style: none;}
+	hr {clear: both;}
+	hr.thick {border-width: 6px; border-color: #000;}
+#main {position: relative; margin: 0 auto; width: $wrap_width; padding-bottom: 20px; opacity: 1; min-height: 800px;}
+// END BASE
