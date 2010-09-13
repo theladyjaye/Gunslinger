@@ -21,7 +21,7 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 		li {float: left; margin-left: 10px; font-size: 16px;}
 	}
 	
-
+	// new game
 	#new-game {
 		.game-table {
 			.body li {width: 920px; color: $color_dark_gray;}
@@ -32,7 +32,23 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 			.body .input-time {float: left;}
 		}
 	}
+	
+	
+	// profile
+	#profile {
+		& .profile-detail {float: left; clear: left; margin-bottom: 30px;
+			& .avatar {width: 150px; height: 113px; border: 5px solid $color_light_white; @include boxshadow(#000, 0, 0, 3px); @include corner(); float: left;}
+			& .content {float: left; width: 790px; margin-left: 20px;
+				& .gamertags {margin-top: 10px; float: left;
+					& li {float: left; width: 200px;
+						& p:first-child {font-weight: bold; font-size: 16px; color: $color_light_orange;}
+					}
+				}
+			}
+		}
+			
 		
+	}	
 
 
 	.filters {float: right; position: relative; top: 10px;}
