@@ -41,6 +41,13 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 			.body .input-date {float: left; width: 250px;}
 			.body .input-time {float: left;}
 		}
+		
+		#attendees-conatiner {float: left;}
+		#attending-container {float: left; clear: left; margin-top: 20px;
+			#attendees {float: left; min-height: 20px;
+				& p {float: left; width: 150px; color: $color_light_orange; background: #fff; @include corner(); padding: 5px; text-indent: 5px; margin: 5px;}
+			}
+		}
 	}
 	
 	

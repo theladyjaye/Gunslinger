@@ -109,7 +109,7 @@
 							<p>New Game</p>
 						</div>
 						<div class="body">
-							<form action="#" method="post">
+							<form id="frm-new-game" action="#" method="post">
 								<ul>
 									<li>
 										<input type="radio" name="privacy" value="public" checked="checked" />
@@ -167,6 +167,14 @@
 													<option name="am">am</option>
 													<option name="pm">pm</option>
 												</select>
+										</div>
+									</li>
+									<li>
+										<div id="attendees-container">
+											Attendees: <input id="dd-attendees" size="50" />
+										</div>
+										<div id="attending-container">
+											<p>Attending:</p> <div id="attendees"></div>
 										</div>
 									</li>
 									<li>
