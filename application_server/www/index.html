@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="/www/resources/css/ui-darkness/jquery-ui.custom.css" />
 	<script src="http://code.jquery.com/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+	<script src="/www/resources/js/sammy.min.js"></script>
 	<script src="/www/resources/js/gunslinger.main.js"></script>
 </head>
 <body>
@@ -16,92 +17,16 @@
 				<h1>Gunslinger</h1>
 				<div id="nav">
 					<ul>
-						<li><a href="#new-game">Schedule a Game</a></li>
-						<li><a href="#lobby">Lobby</a></li>
-						<li><a href="#profile">Profile</a></li>
+						<li><a href="#/lobby" class="on">Lobby</a></li>
+						<li><a href="#/schedule">Schedule a Game</a></li>
+						<li><a href="#/profile">Profile</a></li>
 					</ul>
 				</div>
 				<hr />
 			</div>
 			
-			<div id="new-game" class="page" style="display:none">
-				<h2>Schedule a game</h2>
-				<ul class="game-table">
-					<li>
-						<div class="header">
-							<p>New Game</p>
-						</div>
-						<div class="body">
-							<form action="#" method="post">
-								<ul>
-									<li>
-										<input type="radio" name="privacy" value="public" checked="checked" />
-										<label for="privacy">Public</label>
-										<input type="radio" name="privacy" value="private" />
-										<label for="privacy">Private</label>										
-									</li>
-									<li>
-										Console:
-										<select name="console">
-											<option value="wii">Wii</option>
-											<option value="ps3">PS3</option>
-											<option value="xbox360">XBOX 360</option>
-										</select>
-									</li>
-									<li>
-										Game:
-										<select name="game">
-											<option value="mario-kart">Mario Kart</option>
-											<option value="halo">Halo</option>
-											<option value="grand-theft-auto">Grand Theft Auto</option>
-											<option value="wii-play">Wii Play</option>
-											<option value="gears of war">Gears of War</option>
-										</select>
-									</li>
-									<li>
-										<div class="input-date">
-											Date: <input id="datepicker" type="text" />
-										</div>
-										<div class="input-time">
-											Time: 
-												<select name="hour">
-													<option name="1">1</option>
-													<option name="2">2</option>
-													<option name="3">3</option>
-													<option name="4">4</option>
-													<option name="5">5</option>
-													<option name="6">6</option>
-													<option name="7">7</option>
-													<option name="8">8</option>
-													<option name="9">9</option>
-													<option name="10">10</option>
-													<option name="11">11</option>
-													<option name="12">12</option>
-												</select>
-												:
-												<select name="minute">
-													<option name="00">00</option>
-													<option name="15">15</option>
-													<option name="30">30</option>
-													<option name="45">45</option>
-												</select>
-											
-												<select name="meridiem">
-													<option name="am">am</option>
-													<option name="pm">pm</option>
-												</select>
-										</div>
-									</li>
-									<li>
-										<input type="submit" name="submit" value="Create Game" />
-									</li>
-								</ul>
-							</form>
-						</div>
-					</li>
-				</ul>
-			</div>
-			<div id="lobby" style="display:none" class="page">
+		
+			<div id="lobby" class="page">
 				<h2>Lobby</h2>
 				<div class="filters">
 					<select id="dd-console" name="console">
@@ -175,7 +100,86 @@
 					</li>
 				</ul>
 			</div>
-			<div id="profile" style="" class="page">
+			
+			<div id="schedule" class="page">
+				<h2>Schedule a game</h2>
+				<ul class="game-table">
+					<li>
+						<div class="header">
+							<p>New Game</p>
+						</div>
+						<div class="body">
+							<form action="#" method="post">
+								<ul>
+									<li>
+										<input type="radio" name="privacy" value="public" checked="checked" />
+										<label for="privacy">Public</label>
+										<input type="radio" name="privacy" value="private" />
+										<label for="privacy">Private</label>										
+									</li>
+									<li>
+										Console:
+										<select name="console">
+											<option value="wii">Wii</option>
+											<option value="ps3">PS3</option>
+											<option value="xbox360">XBOX 360</option>
+										</select>
+									</li>
+									<li>
+										Game:
+										<select name="game">
+											<option value="mario-kart">Mario Kart</option>
+											<option value="halo">Halo</option>
+											<option value="grand-theft-auto">Grand Theft Auto</option>
+											<option value="wii-play">Wii Play</option>
+											<option value="gears of war">Gears of War</option>
+										</select>
+									</li>
+									<li>
+										<div class="input-date">
+											Date: <input id="datepicker" type="text" />
+										</div>
+										<div class="input-time">
+											Time: 
+												<select name="hour">
+													<option name="1">1</option>
+													<option name="2">2</option>
+													<option name="3">3</option>
+													<option name="4">4</option>
+													<option name="5">5</option>
+													<option name="6">6</option>
+													<option name="7">7</option>
+													<option name="8">8</option>
+													<option name="9">9</option>
+													<option name="10">10</option>
+													<option name="11">11</option>
+													<option name="12">12</option>
+												</select>
+												:
+												<select name="minute">
+													<option name="00">00</option>
+													<option name="15">15</option>
+													<option name="30">30</option>
+													<option name="45">45</option>
+												</select>
+
+												<select name="meridiem">
+													<option name="am">am</option>
+													<option name="pm">pm</option>
+												</select>
+										</div>
+									</li>
+									<li>
+										<input type="submit" name="submit" value="Create Game" />
+									</li>
+								</ul>
+							</form>
+						</div>
+					</li>
+				</ul>
+			</div>
+				
+			<div id="profile" class="page">
 				<h2>Profile</h2>
 				
 				<div class="profile-detail">
