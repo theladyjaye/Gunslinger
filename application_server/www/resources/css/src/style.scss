@@ -12,10 +12,27 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 	ul {list-style: none;}
 	hr {clear: both}
 	hr.thick {border-width: 6px; border-color: #000;}
-	h1 {font-size: 40px;}
+	h1 {font-size: 40px; width: 400px; float: left;}
 	h2 {font-size: 32px; width: 800px; float: left;}
 #container {position: relative; margin: 0 auto; width: $wrap_width; padding: 10px 0 20px 0; opacity: 1; min-height: 800px;}
 	#header {width: 100%;}
+
+	#nav {float: right; position: relative; top: 13px;
+		li {float: left; margin-left: 10px; font-size: 16px;}
+	}
+	
+
+	#new-game {
+		.game-table {
+			.body li {width: 920px; color: $color_dark_gray;}
+			.body input[type=radio] {margin-right: 5px;
+					+ label {position: relative; top: 2px; margin-right: 10px;}
+				}
+			.body .input-date {float: left; width: 250px;}
+			.body .input-time {float: left;}
+		}
+	}
+		
 
 
 	.filters {float: right; position: relative; top: 10px;}
@@ -26,8 +43,7 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 			& .header p {float: left; font-size: 16px; font-weight: bold; margin-right: 10px;
 					&.console {width: 100px;}
 					&.game {font-style: italic;}
-					&.time {}
-					&:last-child {float: right;}
+					&.time {float: right;}
 				}
 		& .body {width: 940px; background: $color_light_white; float: left; padding: 10px; @include corner();}
 		 	& .body ul {width: 940px;}
