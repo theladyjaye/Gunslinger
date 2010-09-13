@@ -15,14 +15,24 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 	h1 {font-size: 40px; width: 400px; float: left;}
 	h2 {font-size: 32px; width: 800px; float: left;}
 #container {position: relative; margin: 0 auto; width: $wrap_width; padding: 10px 0 20px 0; opacity: 1; min-height: 800px;}
+	#wrap {position: relative;}
+
 	#header {width: 100%;}
+	
 
 	#nav {float: right; position: relative; top: 13px;
-		li {float: left; margin-left: 10px; font-size: 16px;}
+		li {float: left; margin-left: 10px; font-size: 16px;
+			& a {display: block; padding: 5px; background: rgba(255, 255, 255, 0.1); @include corner(); width: 120px; text-align: center;				
+				&:hover,
+				&.on {background: $color_light_white; color: $color_dark_orange;}	
+			}
+		}
 	}
 	
-	// new game
-	#new-game {
+	.page {position: absolute; top: 60px;}
+	
+	// schedule a new game
+	#schedule { display: none;
 		.game-table {
 			.body li {width: 920px; color: $color_dark_gray;}
 			.body input[type=radio] {margin-right: 5px;
@@ -35,7 +45,7 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 	
 	
 	// profile
-	#profile {
+	#profile { display: none;
 		& .profile-detail {float: left; clear: left; margin-bottom: 30px;
 			& .avatar {width: 150px; height: 113px; border: 5px solid $color_light_white; @include boxshadow(#000, 0, 0, 3px); @include corner(); float: left;}
 			& .content {float: left; width: 790px; margin-left: 20px;
