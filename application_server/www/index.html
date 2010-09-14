@@ -11,6 +11,7 @@
 	<script src="/www/resources/js/sammy.min.js"></script>
 	<script src="/www/resources/js/jquery.tmpl.js"></script>
 	<script src="/www/resources/js/jquery.render_template.js"></script>
+	<script src="/www/resources/js/jqModal.js"></script>
 	<script src="/www/resources/js/gunslinger.main.js"></script>
 </head>
 <body>
@@ -221,6 +222,24 @@
 				</ul>
 			</div>
 		</div>
+	</div>
+	
+	
+	<div id="modal-join" class="jqmWindow">
+		<ul class="game-table">
+			<li>
+				<div class="header">
+					<p class="console">Are you sure?</p>
+					<p class="time"><a href="#" class="jqmClose">Close</a></p>
+				</div>
+				<div class="body">
+					<ul>
+						<li class=""><a href="#" class="btn-yes">Yes!</a></li>
+						<li class=""><a href="#" class="jqmClose">No</a></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
 	</div>
 </body>
 </html>
