@@ -34,7 +34,7 @@ function createMatch(req, res, next)
 							match.title          = game.label;
 							match.platform       = game.platform;
 							match.availability   = fields.availability == "private" ? "private" : "public";
-							match.scheduled_time = new Date(); 
+							match.scheduled_time = new Date(fields.scheduled_time); 
 							
 						match.players.push(match.created_by);
 						
