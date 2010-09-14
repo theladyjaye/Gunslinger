@@ -34,72 +34,13 @@
 					<select id="dd-console" name="console">
 						<option value="console">All</option>
 						<option value="console-wii">Wii</option>
-						<option value="console-xbox-360">XBOX 360</option>
+						<option value="console-xbox360">XBOX 360</option>
 						<option value="console-ps3">PS3</option>
+						<option value="console-pc">PC</option>
 					</select>
 				</div>
 				<ul class="game-table">
-					<li>
-						<div class="header">
-							<p class="console console-wii">Wii</p>
-							<p class="game">Mario Kart</p>
-							<p class="time">6:45pm</p>
-						</div>
-						<div class="body">
-							<ul>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li class="open"><a href="#">open</a></li>
-								<li class="open"><a href="#">open</a></li>
-								<li class="open"><a href="#">open</a></li>
-								<li class="open"><a href="#">open</a></li>
-								<li class="open"><a href="#">open</a></li>
-								<li class="open"><a href="#">open</a></li>
-								<li class="open"><a href="#">open</a></li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<div class="header">
-							<p class="console console-xbox-360">XBOX 360</p>
-							<p class="game">Halo</p>
-							<p class="time">7:15pm</p>
-						</div>
-						<div class="body">
-							<ul>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li class="open"><a href="#">open</a></li>
-								<li class="open"><a href="#">open</a></li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<div class="header">
-							<p class="console console-ps3">PS3</p>
-							<p class="game">Grand Theft Auto</p>
-							<p class="time">11:15pm</p>
-						</div>
-						<div class="body">
-							<ul>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li><a href="#">username</a></li>
-								<li class="open"><a href="#">open</a></li>
-							</ul>
-						</div>
-					</li>
+					
 				</ul>
 			</div>
 			
@@ -120,21 +61,9 @@
 										<label for="privacy">Private</label>										
 									</li>
 									<li>
-										Console:
-										<select name="console">
-											<option value="wii">Wii</option>
-											<option value="ps3">PS3</option>
-											<option value="xbox360">XBOX 360</option>
-										</select>
-									</li>
-									<li>
-										Game:
-										<select name="game">
-											<option value="mario-kart">Mario Kart</option>
-											<option value="halo">Halo</option>
-											<option value="grand-theft-auto">Grand Theft Auto</option>
-											<option value="wii-play">Wii Play</option>
-											<option value="gears of war">Gears of War</option>
+										Game:										
+										<select id="dd-game" name="game">
+			
 										</select>
 									</li>
 									<li>
@@ -200,16 +129,20 @@
 						<h2>xXHitmanXx</h2>
 						<ul class="gamertags">
 							<li>
-								<p>Wii</p>
-								<p>xXWiimanXx</p>
+								<p class="icon icon-wii ir">Wii</p>
+								<p class="gamertag">xXWiimanXx</p>
 							</li>
 							<li>
-								<p>PS3</p>
-								<p>xXPlea3eXx</p>
+								<p class="icon icon-ps3 ir">PS3</p>
+								<p class="gamertag">xXPlea3eXx</p>
 							</li>
 							<li>
-								<p>XBOX 360</p>
-								<p>xXboxThree6oXx</p>
+								<p class="icon icon-xbox360 ir">XBOX 360</p>
+								<p class="gamertag">xXboxThree6oXx</p>
+							</li>
+							<li>
+								<p class="icon icon-pc ir">PC</p>
+								<p class="gamertag">xXWinLossXx</p>
 							</li>
 						</ul>
 					</div>

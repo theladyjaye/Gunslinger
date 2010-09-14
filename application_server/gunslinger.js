@@ -17,7 +17,7 @@ var vhost = connect.vhost('gunslinger', server);
 
 server.use("/www", connect.staticProvider(__dirname + '/www'));
 server.use("/www/resources/css", connect.staticProvider(__dirname + '/www/resources/css'));
-server.use("/www/resources/img", connect.staticProvider(__dirname + '/www/resources/img'));
+server.use("/www/resources/imgs", connect.staticProvider(__dirname + '/www/resources/imgs'));
 server.use("/www/resources/js", connect.staticProvider(__dirname + '/www/resources/js'));
 server.use("/www/resources/templates", connect.staticProvider(__dirname + '/www/resources/templates'));
 

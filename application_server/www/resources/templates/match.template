@@ -1,0 +1,19 @@
+{{each matches}}
+		<li>
+			<div class="header">
+				<p class="console console-${platform} icon icon-${platform} ir">${utils.get_console(platform)}</p>
+				<p class="game">${title}</p>
+				<p class="time">${utils.format_time(created_on)}</p>
+			</div>
+			<div class="body">
+				<ul>
+					{{each players}}
+						<li><a href="#">${utils.sanitize_user(this)}</a></li>
+					{{/each}}
+					{{each utils.get_open_spots(players)}}
+						<li class="open"><a href="#">open</a></li>
+					{{/each}}
+				</ul>
+			</div>
+		</li>
+{{/each}}

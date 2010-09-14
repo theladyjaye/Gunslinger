@@ -28,12 +28,13 @@ function createMatch(req, res, next)
 				{
 					if(error == null)
 					{
-						var match            = new matches.Match();
-						match.created_by     = fields.username;
-						match.label          = fields.label;
-						match.title          = game.label;
-						match.platform       = game.platform;
-						match.scheduled_time = new Date(); 
+						var match            	 = new matches.Match();
+							match.created_by     = fields.username;
+							match.label          = fields.label;
+							match.title          = game.label;
+							match.platform       = game.platform;
+							match.scheduled_time = new Date(); 
+							
 						match.players.push(match.created_by);
 						
 						if(typeof fields.players != "undefined" && fields.players instanceof Array)

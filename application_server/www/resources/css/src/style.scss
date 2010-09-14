@@ -16,7 +16,9 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 	h2 {font-size: 32px; width: 800px; float: left;}
 #container {position: relative; margin: 0 auto; width: $wrap_width; padding: 10px 0 20px 0; opacity: 1; min-height: 800px;}
 	#wrap {position: relative;}
+// END BASE
 
+// HEADER
 	#header {width: 100%;}
 	
 
@@ -28,13 +30,16 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 			}
 		}
 	}
-	
+// END HEADER
+
+// PAGES	
 	.page {position: absolute; top: 60px;}
 	
 	// schedule a new game
 	#schedule { display: none;
 		.game-table {
-			.body li {width: 920px; color: $color_dark_gray;}
+			.body ul {margin: 0;}
+			.body li {width: 920px; color: $color_dark_gray; @include boxshadow(rgba(255, 255, 255, 0.4), 0, 0, 0)}
 			.body input[type=radio] {margin-right: 5px;
 					+ label {position: relative; top: 2px; margin-right: 10px;}
 				}
@@ -46,7 +51,9 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 		#attending-container {float: left; clear: left; margin-top: 20px;
 			#attendees {float: left; min-height: 20px;
 				& p {float: left; width: 150px; color: $color_light_orange; background: #fff; @include corner(); padding: 5px; text-indent: 5px; margin: 5px; line-height: 26px;
-					& .delete {color: #ff0000; float: right; background: transparent; width: 12px; text-align: center; margin-right: 10px;}
+					& .delete {color: #aa0000; float: right; background: transparent; width: 12px; text-align: center; margin-right: 10px;
+						&:hover {color: #ff0000;};
+					}
 				}
 			}
 		}
@@ -59,14 +66,14 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 			& .avatar {width: 150px; height: 113px; border: 5px solid $color_light_white; @include boxshadow(#000, 0, 0, 3px); @include corner(); float: left;}
 			& .content {float: left; width: 790px; margin-left: 20px;
 				& .gamertags {margin-top: 10px; float: left;
-					& li {float: left; width: 200px;
+					& li {float: left; width: 170px; padding: 10px; margin-right: 10px; @include corner(); background: $color_light_white; @include boxshadow(#000, 0, 1px, 3px);
 						& p:first-child {font-weight: bold; font-size: 16px; color: $color_light_orange;}
+						& .gamertag {float: left; clear: left; margin-top: 10px; color: $color_dark_gray;}
+						&:last-child {margin-right: 0}
 					}
 				}
 			}
-		}
-			
-		
+		}		
 	}	
 
 
@@ -76,13 +83,13 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 		& li {background: rgba(0, 0, 0, 0.3); float: left; padding: 10px; @include corner(); margin: 5px 0;}
 		& .header {background: $color_light_blue; color: $color_light_white; float: left; width: 940px; height: 30px; @include corner(); padding: 0 10px; line-height: 30px; margin-bottom: 5px; @include boxshadow(#000, 0, 0, 3px);}
 			& .header p {float: left; font-size: 16px; font-weight: bold; margin-right: 10px;
-					&.console {width: 100px;}
-					&.game {font-style: italic;}
+					&.console {text-transform: uppercase; position: relative; top: 1px;}
+					&.game {font-style: italic; position: relative; top: 1px;}
 					&.time {float: right;}
 				}
 		& .body {width: 940px; background: $color_light_white; float: left; padding: 10px; @include corner();}
-		 	& .body ul {width: 940px;}
-				& .body li {float: left; background: rgba(255, 255, 255, 0.5); @include corner(); margin: 5px; padding: 4px;
+		 	& .body ul {width: 940px; margin: 0 0 0 25px;}
+				& .body li {float: left; background: rgba(255, 255, 255, 0.5); @include corner(); margin: 5px; padding: 4px;  @include boxshadow(rgba(0, 0, 0, 0.4), 0, 1px, 3px);
 						&.open a {opacity: 1; text-transform: uppercase;}
 					}
 					& .body li a {@include corner(); width: 130px; height: 26px; background: $color_light_gray; display: block; line-height: 27px; text-indent: 10px; opacity: 0.5;
@@ -90,5 +97,14 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 					}
 		
 	}
-	
-// END BASE
+
+// END PAGES
+
+// ICONS
+.icon {background: url('/www/resources/imgs/sprite-icons.png') no-repeat; width: 27px; height: 27px; float: left; display: block;}
+.icon.icon-wii {background-position: 0 0;}
+.icon.icon-ps3 {background-position: -28px 0;}
+.icon.icon-xbox360 {background-position: -56px 0;}
+.icon.icon-pc {background-position: -84px 0;}
+
+// END ICONS	
