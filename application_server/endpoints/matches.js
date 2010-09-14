@@ -9,6 +9,95 @@ exports.endpoints = function(app)
 	app.get('/', getMatches);
 	app.post('/create', createMatch);
 	app.post('/scheduled', getScheduledMatches);
+	app.post('/join', joinMatch);
+}
+
+function joinMatch(req, res, next)
+{
+	if(req.headers["content-length"] > 0)
+	{
+		var form = req.form = new formidable.IncomingForm;
+		
+		form.parse(req, function(err, fields, files)
+		{
+			if(typeof fields.username == "undefined" || typeof fields.match == "undefined")
+			{
+				next({"ok":false, "message":"invalid username or match id"});
+			}
+			else
+			{
+				db.getDoc(encodeURIComponent(fields.match), function(errorMatch, match)
+				{
+					if(errorMatch == null)
+					{
+						var canJoinMatch = true;
+						var username     = "user/" + fields.username;
+						
+						// is the username already in the current match?
+						for(var i in match.players)
+						{
+							
+							if(match.players[i] == username)
+								canJoinMatch = false;
+						}
+						
+						if(canJoinMatch)
+						{
+							db.view("gunslinger", "matches-scheduled", {"include_docs":true, "startkey":['user/'+fields.username, null], "endkey":['user/'+fields.username, {}]}, function(errorScheduled, data)
+							{
+								if(errorScheduled == null)
+								{
+									for(var i in data.rows)
+									{
+										/*
+											TODO do any time comparissions / schedule conflicts here
+										*/
+										//var current = data.rows[i].doc;
+									}
+								
+									if(canJoinMatch)
+									{
+										match.players.push(username);
+										db.saveDoc(match, function(error, data)
+										{
+											if(error == null)
+											{
+												next({"ok":true, "message":"successfully joined match"});
+											}
+											else
+											{
+												next({"ok":false, "message":"unable to save update match, you have not joined this match"})
+											}
+										});
+									}
+									else
+									{
+										next({"ok":false, "message":"you are not eligible to join this match"});
+									}
+								}
+								else
+								{
+									next({"ok":false, "message":"unable to retrieve scheduled games"});
+								}
+							});
+						}
+						else
+						{
+							next({"ok":false, "message":"you are already a member of this match"});
+						}
+					}
+					else
+					{
+						next({"ok":false, "message":"invalid game"})
+					}
+				});
+			}
+		});
+	}
+	else
+	{
+		next({"ok":false, "message":"invalid request"});
+	}
 }
 
 function getScheduledMatches(req, res, next)
@@ -75,7 +164,7 @@ function createMatch(req, res, next)
 							match.title          = game.label;
 							match.platform       = game.platform;
 							match.availability   = fields.availability == "private" ? "private" : "public";
-							match.maxPlayers     = fields.maxPlayers <= 12 fields.maxPlayers : 12;
+							match.maxPlayers     = fields.maxPlayers <= 12 ? fields.maxPlayers : 12;
 							match.scheduled_time = new Date(fields.scheduled_time); 
 							
 							match.players.push(match.created_by);
