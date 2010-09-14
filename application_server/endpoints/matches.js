@@ -8,6 +8,47 @@ exports.endpoints = function(app)
 {
 	app.get('/', getMatches);
 	app.post('/create', createMatch);
+	app.post('/scheduled', getScheduledMatches);
+}
+
+function getScheduledMatches(req, res, next)
+{
+	if(req.headers["content-length"] > 0)
+	{
+		var form = req.form = new formidable.IncomingForm;
+		
+		form.parse(req, function(err, fields, files)
+		{
+			if(typeof fields.username == "undefined")
+			{
+				next({"ok":false, "message":"invalid username"});
+			}
+			else
+			{
+				db.view("gunslinger", "matches-scheduled", {"include_docs":true, "startkey":['user/'+fields.username, null], "endkey":['user/'+fields.username, {}]}, function(error, data)
+				{
+					if(error == null)
+					{
+						results = [];
+
+						data.rows.forEach(function(row){
+							results.push(row.doc);
+						});
+
+						next({"ok":true, "matches":results});
+					}
+					else
+					{
+						next({"ok":false, "message":error.message});
+					}
+				});
+			}
+		});
+	}
+	else
+	{
+		next({"ok":false, "message":"invalid request"});
+	}
 }
 
 function createMatch(req, res, next)
@@ -34,6 +75,7 @@ function createMatch(req, res, next)
 							match.title          = game.label;
 							match.platform       = game.platform;
 							match.availability   = fields.availability == "private" ? "private" : "public";
+							match.maxPlayers     = fields.maxPlayers <= 12 fields.maxPlayers : 12;
 							match.scheduled_time = new Date(fields.scheduled_time); 
 							
 							match.players.push(match.created_by);
