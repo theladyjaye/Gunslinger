@@ -75,7 +75,7 @@ function createMatch(req, res, next)
 							match.title          = game.label;
 							match.platform       = game.platform;
 							match.availability   = fields.availability == "private" ? "private" : "public";
-							match.maxPlayers     = fields.maxPlayers <= 12 fields.maxPlayers : 12;
+							match.maxPlayers     = fields.maxPlayers <= 12 ? fields.maxPlayers : 12;
 							match.scheduled_time = new Date(fields.scheduled_time); 
 							
 							match.players.push(match.created_by);

@@ -1,19 +1,35 @@
-{{each matches}}
-		<li>
-			<div class="header">
-				<p class="console console-${platform} icon icon-${platform} ir">${utils.get_console(platform)}</p>
-				<p class="game">${title}</p>
-				<p class="time">${utils.format_time(scheduled_time)}</p>
-			</div>
-			<div class="body">
-				<ul>
-					{{each players}}
-						<li><a href="#">${utils.sanitize_user(this)}</a></li>
-					{{/each}}
-					{{each utils.get_open_spots(players)}}
-						<li class="open"><a href="#">open</a></li>
-					{{/each}}
-				</ul>
-			</div>
-		</li>
-{{/each}}
+{{if matches}}
+	{{each matches}}
+			<li id="${_id}" class="match">
+				<div class="header">
+					<p class="console console-${platform} icon icon-${platform} ir">${utils.get_console(platform)}</p>
+					<p class="game">${title}</p>
+					<p class="time">${utils.format_time(scheduled_time)}</p>
+				</div>
+				<div class="body">
+					<ul>
+						{{each players}}
+							<li>
+								{{if is_profile}}
+									<span>${utils.sanitize_user(this)}</span>
+								{{else}}
+									<a href="#">${utils.sanitize_user(this)}</a>
+								{{/if}}
+							</li>
+						{{/each}}
+						{{each utils.get_open_spots(players, maxPlayers)}}
+							<li class="open">
+								{{if is_profile}}
+									<span class="open">open</span>
+								{{else}}
+									<a href="#">open</a>
+								{{/if}}
+							</li>
+						{{/each}}
+					</ul>
+				</div>
+			</li>
+	{{/each}}
+{{else}}
+	<li>No matches found.  <a href="#/schedule">Schedule one</a> now.</li>
+{{/if}}
