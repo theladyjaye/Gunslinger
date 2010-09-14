@@ -3,7 +3,7 @@
 			<div class="header">
 				<p class="console console-${platform} icon icon-${platform} ir">${utils.get_console(platform)}</p>
 				<p class="game">${title}</p>
-				<p class="time">${utils.format_time(created_on)}</p>
+				<p class="time">${utils.format_time(scheduled_time)}</p>
 			</div>
 			<div class="body">
 				<ul>
