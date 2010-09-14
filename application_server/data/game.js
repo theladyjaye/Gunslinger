@@ -4,4 +4,5 @@ exports.Game = function()
 	this.label          = null;
 	this.platform       = null;
 	this.type           = "game";
+	this.modes          = [];
 }

@@ -101,31 +101,43 @@ function initialize(req, res, next)
 	    g1.label          = "Halo:Reach";
 	    g1._id            = "game/halo-reach";
 	    g1.platform       = "xbox360";
+	    g1.modes.push("Deathmatch");
+	    g1.modes.push("Capture The Flag");
+	    g1.modes.push("Co-Op Campaign");
 	                  
 	var g2                = new game.Game();
 	    g2.label          = "Red Dead Redemption";
 	    g2._id            = "game/red-dead-redemption";
 	    g2.platform       = "ps3";
+	    g2.modes.push("Deathmatch");
 	                  
 	var g3                = new game.Game();
 	    g3.label          = "Borderlands";
 	    g3._id            = "game/borderlands";
 	    g3.platform       = "xbox360";
+	    g3.modes.push("Deathmatch");
+	    g3.modes.push("Capture The Flag");
+	    g3.modes.push("Co-Op Campaign");
 	                  
 	var g4                = new game.Game();
 	    g4.label          = "Starcraft 2";
 	    g4._id            = "game/starcraft2";
 	    g4.platform       = "pc";
+	    g4.modes.push("Melee");
 
 	var g5                = new game.Game();
 	    g5.label          = "Gears of War 2";
 	    g5._id            = "game/gears-of-war-2";
 	    g5.platform       = "xbox360";
+	    g5.modes.push("Deathmatch");
+	    g5.modes.push("Capture The Flag");
+	    g5.modes.push("Co-Op Campaign");
 	
 	var g6                = new game.Game();
 	    g6.label          = "Mario Kart";
 	    g6._id            = "game/mario-kart";
 	    g6.platform       = "wii";
+	    g6.modes.push("Deathmatch");
 	
 	var m1                = new match.Match();
 	    m1.created_by     = u1._id;
