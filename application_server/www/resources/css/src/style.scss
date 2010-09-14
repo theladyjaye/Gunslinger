@@ -12,7 +12,9 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 	ul {list-style: none;}
 	hr {clear: both}
 	hr.thick {border-width: 6px; border-color: #000;}
-	h1 {font-size: 40px; width: 400px; float: left;}
+	h1 {font-size: 40px; width: 400px; float: left;
+		& a {display: block;}
+	}
 	h2 {font-size: 32px; width: 800px; float: left;}
 #container {position: relative; margin: 0 auto; width: $wrap_width; padding: 10px 0 20px 0; opacity: 1; min-height: 800px;}
 	#wrap {position: relative;}
@@ -33,7 +35,7 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 // END HEADER
 
 // PAGES	
-	.page {position: absolute; top: 60px; width: 980px;}
+	.page {position: absolute; top: 70px; width: 980px;}
 	
 	// schedule a new game
 	#schedule { display: none;
@@ -106,5 +108,6 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 .icon.icon-ps3 {background-position: -28px 0;}
 .icon.icon-xbox360 {background-position: -56px 0;}
 .icon.icon-pc {background-position: -84px 0;}
+.icon.icon-logo {background-position: 0 -50px; width: 240px; height: 60px;}
 
 // END ICONS	
