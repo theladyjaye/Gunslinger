@@ -36,6 +36,11 @@ function createMatch(req, res, next)
 						match.scheduled_time = new Date(); 
 						match.players.push(match.created_by);
 						
+						if(typeof fields.players != "undefined" && fields.players instanceof Array)
+						{
+							console.log(fields.players);
+						}
+						
 						db.saveDoc(match, function(error, data)
 						{
 							if(error == null)
