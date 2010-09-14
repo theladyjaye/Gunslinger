@@ -20,44 +20,66 @@ function createMatch(req, res, next)
 		{
 			if(typeof fields.username == "undefined")
 			{
-				next({"ok":false, "message":"invalid"});
+				next({"ok":false, "message":"invalid username"});
 			}
 			else
 			{
-				db.getDoc(fields.game, function(error, game)
+				db.getDoc(encodeURIComponent('game/' + fields.game), function(error, game)
 				{
 					if(error == null)
 					{
 						var match                = new matches.Match();
-							match.created_by     = fields.username;
+							match.created_by     = 'user/'+fields.username;
 							match.label          = fields.label;
 							match.title          = game.label;
 							match.platform       = game.platform;
 							match.availability   = fields.availability == "private" ? "private" : "public";
 							match.scheduled_time = new Date(fields.scheduled_time); 
 							
-						match.players.push(match.created_by);
+							match.players.push(match.created_by);
 						
 						if(typeof fields.players != "undefined" && fields.players instanceof Array)
 						{
-							console.log(fields.players);
+							var players = [];
+							
+							fields.players.forEach(function(player){
+								players.push("user/"+player);
+							})
+							
+							client.request({
+							method: 'POST',
+							path: '/gunslinger/_all_docs',
+							data: {"keys":players}
+							}, function(error, data)
+							{
+								for(var i in data.rows)
+								{
+									var object = data.rows[i];
+									
+									if(typeof object.error == "undefined" && object.key != match.created_by)
+									{
+										match.players.push(object.key);
+									}
+								}
+								
+								db.saveDoc(match, function(error, data)
+								{
+									if(error == null)
+									{
+										next({"ok":true, "match":data.id});
+									}
+									else
+									{
+										next({"ok":false, "message":"invalid"})
+									}
+								});
+							
+							});
 						}
-						
-						db.saveDoc(match, function(error, data)
-						{
-							if(error == null)
-							{
-								next({"ok":true, "match":data.id});
-							}
-							else
-							{
-								next({"ok":false, "message":"invalid"})
-							}
-						});
 					}
 					else
 					{
-						next({"ok":false, "message":"invalid"})
+						next({"ok":false, "message":"invalid game - " + fields.game})
 					}
 				});
 			}
@@ -65,7 +87,7 @@ function createMatch(req, res, next)
 	}
 	else
 	{
-		next({"ok":false, "message":"invalid"});
+		next({"ok":false, "message":"invalid request"});
 	}
 }
 
