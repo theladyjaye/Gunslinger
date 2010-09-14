@@ -1,14 +1,15 @@
 require.paths.unshift("/usr/local/lib/node");
 
 var connect      = require('connect');
-var form         = require('connect-form');
+//var form         = require('connect-form');
 var main         = require('./endpoints/main');
+var matches      = require('./endpoints/matches');
 var games        = require('./endpoints/games');
 var sampledata   = require('./endpoints/sampledata');
 
 
 var server = connect.createServer(
-	form({ keepExtensions: false }),
+	//form({ keepExtensions: false }),
 	connect.logger({ buffer: true })
 );
 
@@ -21,6 +22,7 @@ server.use("/www/resources/js", connect.staticProvider(__dirname + '/www/resourc
 
 server.use("/sampledata/", connect.router(sampledata.endpoints));
 server.use("/games/", connect.router(games.endpoints));
+server.use("/matches/", connect.router(matches.endpoints));
 
 
 server.use(main.defaultResponse);
