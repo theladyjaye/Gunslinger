@@ -28,11 +28,12 @@ function createMatch(req, res, next)
 				{
 					if(error == null)
 					{
-						var match            	 = new matches.Match();
+						var match                = new matches.Match();
 							match.created_by     = fields.username;
 							match.label          = fields.label;
 							match.title          = game.label;
 							match.platform       = game.platform;
+							match.availability   = fields.availability == "private" ? "private" : "public";
 							match.scheduled_time = new Date(); 
 							
 						match.players.push(match.created_by);
