@@ -121,7 +121,7 @@ function createMatch(req, res, next)
 					}
 					else
 					{
-						next({"ok":false, "message":"invalid game - " + fields.game})
+						next({"ok":false, "message":"invalid game"})
 					}
 				});
 			}
