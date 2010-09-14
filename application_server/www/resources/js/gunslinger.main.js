@@ -26,6 +26,7 @@ $(function() {
 	$("#datepicker").datepicker();
 
 
+	// attendees autocomplete
 	setup_attendees();
 	
 	// run sammy
@@ -107,7 +108,16 @@ var app = $.sammy(function() {
 	
 	// routes
 	this.get("#/lobby", function() {
-		change_page("lobby");
+		$.getJSON("/games", function(json) {
+			if(json.ok && json.matches)
+			$("#lobby .game-table").html("").render_template({
+				"name": "lobby",
+				"data": {"matches": json.matches},
+				"complete": function() {
+					change_page("lobby");			
+				}
+			});
+		});
 	}).get("#/schedule", function() {
 		change_page("schedule");
 	}).get("#/profile", function() {

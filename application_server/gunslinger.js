@@ -18,6 +18,7 @@ server.use("/www", connect.staticProvider(__dirname + '/www'));
 server.use("/www/resources/css", connect.staticProvider(__dirname + '/www/resources/css'));
 server.use("/www/resources/img", connect.staticProvider(__dirname + '/www/resources/img'));
 server.use("/www/resources/js", connect.staticProvider(__dirname + '/www/resources/js'));
+server.use("/www/resources/templates", connect.staticProvider(__dirname + '/www/resources/templates'));
 
 server.use("/sampledata/", connect.router(sampledata.endpoints));
 server.use("/games/", connect.router(games.endpoints));
