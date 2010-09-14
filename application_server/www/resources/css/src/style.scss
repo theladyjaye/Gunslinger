@@ -52,7 +52,10 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 		#attendees-conatiner {float: left;}
 		#attending-container {float: left; clear: left; margin-top: 20px;
 			#attendees {float: left; min-height: 20px;
-				& p {float: left; width: 150px; color: $color_light_orange; background: #fff; @include corner(); padding: 5px; text-indent: 5px; margin: 5px; line-height: 26px;
+				& p {float: left; width: 153px; color: $color_light_orange; background: #fff; @include corner(); padding: 5px; text-indent: 5px; margin: 5px; line-height: 26px;
+					& .player {float: left; opacity: 1;
+						&:hover {color: $color_light_orange;}
+					}
 					& .delete {color: #aa0000; float: right; background: transparent; width: 12px; text-align: center; margin-right: 10px;
 						&:hover {color: #ff0000;};
 					}
@@ -92,11 +95,15 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 		& .body {width: 940px; background: $color_light_white; float: left; padding: 10px; @include corner();}
 		 	& .body ul {width: 940px; margin: 0 0 0 25px;}
 				& .body li {float: left; background: rgba(255, 255, 255, 0.5); @include corner(); margin: 5px; padding: 4px;  @include boxshadow(rgba(0, 0, 0, 0.4), 0, 1px, 3px);
+						&.open span,
 						&.open a {opacity: 1; text-transform: uppercase;}
 					}
+					& .body li span,
 					& .body li a {@include corner(); width: 130px; height: 26px; background: $color_light_gray; display: block; line-height: 27px; text-indent: 10px; opacity: 0.5;
 						&:hover {background: $color_light_orange; color: #fff;}
 					}
+					
+					& .body li span:hover {background: $color_light_gray; color: #fff;}
 		
 	}
 

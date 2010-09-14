@@ -1,5 +1,17 @@
-$(function() {
+$(function() {	
 	
+	// join game
+	$("body").delegate(".open a", "click", function() {
+		var $this = $(this),
+			username = "xXHitmanXx";
+			match = $this.parents(".match").attr("id");
+		
+		$.post("/matches/join", {username: username, match: match}, function(response) {
+			$this.html(username).parents("li").removeClass("open");
+		});
+		
+		return false;
+	});
 	
 	// new game form
 	$("#frm-new-game").submit(function() {
@@ -17,12 +29,9 @@ $(function() {
 		date.setHours(form_data.hour); 
 		date.setMinutes(parseInt(form_data.minute)); 
  		
-		form_data.date = date.toString(); 
+		form_data.scheduled_time = date.toString(); 
 	
-		// clean up in form_data
-		delete form_data.minute;
-		delete form_data.hour;
-		delete form_data.meridiem;
+
 		
 		// get attending players
 		var players = [];
@@ -32,9 +41,21 @@ $(function() {
 		
 		form_data.players = players;
 		
-		console.log(form_data);
+		// determine maxPlayers (creator + players + extras)
+		form_data.maxPlayers = 1 + players.length + parseInt(form_data.additional_open_spots);
+		
+		// clean up additional open spots
+		delete form_data.addtional_open_spots;
+		// clean up date info in form_data
+		delete form_data.date;
+		delete form_data.minute;
+		delete form_data.hour;
+		delete form_data.meridiem;
+		
+	//	console.log(form_data);
 		$.post("/matches/create", form_data, function(response) {
-			console.log(response);
+			// redirect to lobby
+			document.location.href = "#/lobby";
 		});
 		
 		return false;
@@ -133,6 +154,9 @@ var app = $.sammy(function() {
 			}
 		});
 	}).get("#/schedule", function() {
+		// reset form
+		$("#frm-new-game")[0].reset();
+		
 		$.getJSON("/games", function(json) {
 			if(json.ok && json.games)
 			{
@@ -143,7 +167,7 @@ var app = $.sammy(function() {
 					game = json.games[i];
 
 					$("<option />", {
-						"value": game._id,
+						"value": game._id.split("/")[1],
 						"html": game.label + " | " + utils.get_console(game.platform).toUpperCase()
 					}).appendTo($dd_game);
 				}
@@ -151,19 +175,21 @@ var app = $.sammy(function() {
 			}
 		});
 	}).get("#/profile", function() {
-		$.getJSON("/matches", function(json) {
-			if(json.ok && json.matches)
+		$.post("/matches/scheduled", {username: "xXHitmanXx"}, function(json) {
+			if(json.ok)
 			{
 				$("#profile .game-table").html("").render_template({
 					"name": "match",
 					"path": template_path,
-					"data": {"matches": json.matches},
+					"data": {"matches": json.matches,
+							 "is_profile": true
+							},
 					"complete": function() {
 						change_page("profile");			
 					}
 				});
 			}
-		});
+		}, 'json');
 	});
 });
 
@@ -260,10 +286,9 @@ var utils = {
 	
 	    return n + ' year' + s(n) + ' ago';
 	},
-	get_open_spots: function(players)
+	get_open_spots: function(players, max_spots)
 	{
-		var max_spots = 12,
-			ary = [];
+		var	ary = [];
 			
 		for(var i = 0, len = max_spots - players.length; i < len; i++)
 		{
