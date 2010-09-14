@@ -4,11 +4,38 @@ $(function() {
 	// new game form
 	$("#frm-new-game").submit(function() {
 		
-		console.log($(this).serialize());
-		console.log($("#attendees .player").get())
-//		$.post("/matches/create", $(this).serialize(), function(response) {
-			
-//		});
+		var form_data = utils.querystring_to_object($(this).serialize());
+		
+		// get scheduled time
+		var date = new Date(form_data.date); // create date from datepicker
+		form_data.hour = parseInt(form_data.hour); // parse hour to int
+		if(form_data.meridiem == "pm") // set hour based on meridiem
+		{
+			form_data.hour += form_data.hour + 12;
+		}
+
+		date.setHours(form_data.hour); 
+		date.setMinutes(parseInt(form_data.minute)); 
+ 		
+		form_data.date = date.toString(); 
+	
+		// clean up in form_data
+		delete form_data.minute;
+		delete form_data.hour;
+		delete form_data.meridiem;
+		
+		// get attending players
+		var players = [];
+		$.each($("#attendees .player").get(), function() {
+			players.push($(this).text());
+		});
+		
+		form_data.players = players;
+		
+		console.log(form_data);
+		$.post("/matches/create", form_data, function(response) {
+			console.log(response);
+		});
 		
 		return false;
 	});
@@ -37,7 +64,7 @@ $(function() {
 
 function setup_attendees()
 {
-	var availableTags = ["Cool Kid", "Nightowl", "Blockbuster Manager", "Brother", "Sister", "Uncle"];
+	var availableTags = ["ajackson", "jmadison", "tjefferson", "alincoln"];
 
 	$("#dd-attendees").autocomplete({
 		minLength: 0,
@@ -50,7 +77,7 @@ function setup_attendees()
 			this.value = "";
 			
 			$("<p />", {
-				html: '<span class="player">' + ui.item.value + '<span><a href="#" class="delete">x</a>'
+				html: '<span class="player">' + ui.item.value + '</span><a href="#" class="delete">x</a>'
 			}).appendTo("#attendees");
 			
 			return false;
@@ -244,5 +271,15 @@ var utils = {
 		}
 		
 		return ary;
+	},
+	querystring_to_object: function(querystring)
+	{
+		var result = {};
+		
+		querystring.replace(/([^=&]+)=([^&]*)/g, function(match, key, value) {
+			result[unescape(key)] = unescape(value);
+		});
+		
+		return result;
 	}
 };

@@ -55,10 +55,10 @@
 							<form id="frm-new-game" action="#" method="post">
 								<ul>
 									<li>
-										<input type="radio" name="privacy" value="public" checked="checked" />
-										<label for="privacy">Public</label>
-										<input type="radio" name="privacy" value="private" />
-										<label for="privacy">Private</label>										
+										<input type="radio" name="availability" value="public" checked="checked" />
+										<label for="availability">Public</label>
+										<input type="radio" name="availability" value="private" />
+										<label for="availability">Private</label>										
 									</li>
 									<li>
 										Game:										
@@ -68,7 +68,7 @@
 									</li>
 									<li>
 										<div class="input-date">
-											Date: <input id="datepicker" type="text" />
+											Date: <input id="datepicker" type="text" name="date" />
 										</div>
 										<div class="input-time">
 											Time: 
@@ -109,6 +109,8 @@
 										</div>
 									</li>
 									<li>
+										<input type="hidden" name="username" value="xXHitmanXx" />
+										<input type="hidden" name="label" value="New game created" />
 										<input type="submit" name="submit" value="Create Game" />
 									</li>
 								</ul>
