@@ -1,16 +1,31 @@
 $(function() {	
 	
+	// join modal setup
+	$("#modal-join").jqm();
+	
 	// join game
 	$("body").delegate(".open a", "click", function() {
 		var $this = $(this),
-			username = "xXHitmanXx";
-			match = $this.parents(".match").attr("id");
+			match = $this.parents(".match").attr("id").toString();
+		
+		$modal = $("#modal-join");
+		$modal.find(".body").attr("id", "match-" + match);
+		$modal.jqmShow();
+		
+
+		return false;
+	});
+	
+	$("#modal-join").delegate(".btn-yes", "click", function() {
+		var $modal = $("#modal-join"),
+			username = "xXHitmanXx",
+			match = $modal.find(".body").attr("id").replace("match-", "");
 		
 		$.post("/matches/join", {username: username, match: match}, function(response) {
-			$this.html(username).parents("li").removeClass("open");
+			$("#" + match).find(".body .open:first a").html(username).parents("li").removeClass("open");
+			$modal.jqmHide();
 		});
-		
-		return false;
+			
 	});
 	
 	// new game form
