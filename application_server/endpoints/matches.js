@@ -114,7 +114,7 @@ function getScheduledMatches(req, res, next)
 			}
 			else
 			{
-				db.view("gunslinger", "matches-scheduled", {"include_docs":true, "startkey":['user/'+fields.username, null], "endkey":['user/'+fields.username, {}]}, function(error, data)
+				db.view("gunslinger", "matches-scheduled", {"include_docs":true, "startkey":['user/'+fields.username.toLowerCase(), null], "endkey":['user/'+fields.username.toLowerCase(), {}]}, function(error, data)
 				{
 					if(error == null)
 					{
