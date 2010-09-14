@@ -96,6 +96,10 @@ function initialize(req, res, next)
 	g5._id            = "game/gears-of-war-2";
 	g5.platform       = "xbox360";
 	
+	var g6            = new game.Game();
+	g6.label          = "Mario Kart";
+	g6._id            = "game/mario-kart";
+	g6.platform       = "wii";
 	
 	var m1            = new match.Match();
 	m1.created_by     = u1._id;
@@ -137,6 +141,14 @@ function initialize(req, res, next)
 	m5.scheduled_time = new Date(sixHoursFromNow);
 	m5.players.push(m5.created_by);
 	
+	var m6            = new match.Match();
+	m6.created_by     = u4._id;
+	m6.label          = "Lorem ipsum dolor sit amet";
+	m6.title          = g6.label;
+	m6.platform       = g6.platform;
+	m6.scheduled_time = new Date(sixHoursFromNow);
+	m6.players.push(m6.created_by);
+	
 	db.saveDoc(u1);
 	db.saveDoc(u2);
 	db.saveDoc(u3);
@@ -149,12 +161,14 @@ function initialize(req, res, next)
 	db.saveDoc(g3);
 	db.saveDoc(g4);
 	db.saveDoc(g5);
+	db.saveDoc(g6);
 	
 	db.saveDoc(m1);
 	db.saveDoc(m2);
 	db.saveDoc(m3);
 	db.saveDoc(m4);
 	db.saveDoc(m5);
+	db.saveDoc(m6);
 	
 	next({"ok":true, "message":"done"});
 }
