@@ -7,6 +7,7 @@ exports.Match = function()
 	this.availability   = "public";
 	this.scheduled_time = null;
 	this.platform       = null;
+	this.maxPlayers     = 12;
 	this.players        = [];
 	this.type           = "match";
 }

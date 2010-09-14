@@ -124,6 +124,7 @@ function initialize(req, res, next)
 	m1.title          = g1.label;
 	m1.platform       = g1.platform;
 	m1.scheduled_time = new Date(fifteenMinutesFromNow); 
+	m1.maxPlayers     = 6;
 	m1.players.push(m1.created_by);
 	
 	var m2            = new match.Match();
@@ -132,6 +133,7 @@ function initialize(req, res, next)
 	m2.title          = g2.label;
 	m2.platform       = g2.platform;
 	m2.scheduled_time = new Date(thirtyMinutesFromNow);
+	m2.maxPlayers     = 4;
 	m2.players.push(m2.created_by);
 	
 	var m3            = new match.Match();
@@ -140,6 +142,7 @@ function initialize(req, res, next)
 	m3.title          = g3.label;
 	m3.platform       = g3.platform;
 	m3.scheduled_time = new Date(fourtyFiveMinutesFromNow);
+	m3.maxPlayers     = 2;
 	m3.players.push(m3.created_by);
 	
 	var m4            = new match.Match();
@@ -148,7 +151,9 @@ function initialize(req, res, next)
 	m4.title          = g4.label;
 	m4.platform       = g4.platform;
 	m4.scheduled_time = new Date(twoHoursFromNow);
+	m4.maxPlayers     = 8;
 	m4.players.push(m4.created_by);
+	
 	
 	var m5            = new match.Match();
 	m5.created_by     = u4._id;
@@ -156,6 +161,7 @@ function initialize(req, res, next)
 	m5.title          = g5.label;
 	m5.platform       = g5.platform;
 	m5.scheduled_time = new Date(sixHoursFromNow);
+	m5.maxPlayers     = 10;
 	m5.players.push(m5.created_by);
 	
 	var m6            = new match.Match();
@@ -164,6 +170,7 @@ function initialize(req, res, next)
 	m6.title          = g6.label;
 	m6.platform       = g6.platform;
 	m6.scheduled_time = new Date(sixHoursFromNow);
+	m5.maxPlayers     = 12;
 	m6.players.push(m6.created_by);
 	
 	db.saveDoc(u1);
