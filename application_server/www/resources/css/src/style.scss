@@ -52,7 +52,10 @@ body {font: 14px "Calibri", "Lucida Sans", Helvetica, Arial, sans-serif; color: 
 		#attendees-conatiner {float: left;}
 		#attending-container {float: left; clear: left; margin-top: 20px;
 			#attendees {float: left; min-height: 20px;
-				& p {float: left; width: 150px; color: $color_light_orange; background: #fff; @include corner(); padding: 5px; text-indent: 5px; margin: 5px; line-height: 26px;
+				& p {float: left; width: 153px; color: $color_light_orange; background: #fff; @include corner(); padding: 5px; text-indent: 5px; margin: 5px; line-height: 26px;
+					& .player {float: left; opacity: 1;
+						&:hover {color: $color_light_orange;}
+					}
 					& .delete {color: #aa0000; float: right; background: transparent; width: 12px; text-align: center; margin-right: 10px;
 						&:hover {color: #ff0000;};
 					}

@@ -54,7 +54,8 @@ $(function() {
 		
 	//	console.log(form_data);
 		$.post("/matches/create", form_data, function(response) {
-			console.log(response);
+			// redirect to lobby
+			document.location.href = "#/lobby";
 		});
 		
 		return false;
