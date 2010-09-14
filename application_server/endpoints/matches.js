@@ -18,9 +18,9 @@ function createMatch(req, res, next)
 	
 		form.parse(req, function(err, fields, files)
 		{
-			if(typeof fields.username == "undefined")
+			if(typeof fields.username == "undefined" || typeof fields.scheduled_time == "undefined" )
 			{
-				next({"ok":false, "message":"invalid username"});
+				next({"ok":false, "message":"invalid username or scheduled time"});
 			}
 			else
 			{
