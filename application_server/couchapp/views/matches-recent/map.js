@@ -1,5 +1,5 @@
 function(doc)
 {
-	if(doc.type == "match" && doc.public == true)
+	if(doc.type == "match")
 		emit(doc.scheduled_time, null);
 }
